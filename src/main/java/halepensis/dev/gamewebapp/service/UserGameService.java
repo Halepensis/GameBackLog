@@ -22,10 +22,9 @@ public class UserGameService {
     private final GameRepo gameRepo;
     private final CurrentUserService currentUser;
 
-    public UserGameDTO addGame(long newGame) {
+    public UserGameDTO addGame(Game newGame) {
         User user = currentUser.getCurrentUser();
-        Game game = gameRepo.findById(newGame)
-                .orElseThrow(() -> new EntityNotFoundException("Juego no encontrado"));
+        Game game = findOrCreate(newGame);
 
         if (repo.existsByUserAndGame(user, game)) {
             throw new GameAlreadyAddedException("El juego ya esta asociado al usuario");
@@ -59,4 +58,15 @@ public class UserGameService {
         }
         return false;
     }
+
+    private  Game findOrCreate(Game newGame) {
+        if(newGame.getExternalId()==null) {
+            return gameRepo.findById(newGame.getId())
+                    .orElseGet(() -> gameRepo.save(newGame));
+        }
+        return gameRepo.findByExternalId(newGame.getExternalId())
+                    .orElseGet(() -> gameRepo.save(newGame));
+
+    }
+
 }

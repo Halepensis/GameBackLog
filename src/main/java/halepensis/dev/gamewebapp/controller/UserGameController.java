@@ -2,6 +2,7 @@ package halepensis.dev.gamewebapp.controller;
 
 import halepensis.dev.gamewebapp.dto.UserGameDTO;
 
+import halepensis.dev.gamewebapp.model.Game;
 import halepensis.dev.gamewebapp.service.UserGameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api/usergames")
 public class UserGameController {
 
+
     private final UserGameService service;
 
     @GetMapping
@@ -23,8 +25,8 @@ public class UserGameController {
     }
 
     @PostMapping
-    public ResponseEntity<UserGameDTO> addGame(@RequestBody long newGameID) {
-        return ResponseEntity.ok(service.addGame(newGameID));
+    public ResponseEntity<UserGameDTO> addGame(@RequestBody Game newGame) {
+        return ResponseEntity.ok(service.addGame(newGame));
     }
 
     @DeleteMapping("/{id}")
