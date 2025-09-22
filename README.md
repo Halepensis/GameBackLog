@@ -116,8 +116,3 @@ java -jar target\GameWebApp-0.0.1-SNAPSHOT.jar
 - `src/main/java/halepensis/dev/gamewebapp/controller` — controladores y endpoints
 - `src/main/java/halepensis/dev/gamewebapp/security` — JWT y filtros de seguridad
 
-## Mantenimiento y próximos pasos sugeridos
-
-- Añadir un README en inglés si el proyecto se comparte públicamente.
-- Documentar modelos (DTOs) y ejemplos de request/responses (Postman collection o OpenAPI/Swagger).
-- Externalizar la clave JWT y las credenciales DB en variables de entorno o secret manager.
